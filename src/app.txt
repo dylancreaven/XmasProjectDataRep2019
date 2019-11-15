@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Route path="/create" component={CreatePatient} />
+<Route path="/patients" component={ReadListOfPatients} />
+<Route path="/editPatient/:id" component={EditPatientList}/>
