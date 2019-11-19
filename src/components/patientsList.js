@@ -31,7 +31,7 @@ class ShowPatients extends React.Component {
         <div>
         <h1>All Patients</h1>
         <Patients myPatient={this.state.patients}></Patients>
-        <Link to={"/patientsList/"} className="btn btn-primary">Click here to see Patients</Link>
+        <Link to={"/CreatePatient/"} className="btn btn-primary">click here to Add a Patient</Link>
        
         </div>
     )

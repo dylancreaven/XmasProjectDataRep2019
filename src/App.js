@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 import Home from './components/home';
 import patientsList from "./components/patientsList";
+import CreatePatient from './components/createPatient';
 
 
 
@@ -23,6 +24,7 @@ class App extends React.Component {
       </Navbar>
        <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/createPatient" component={CreatePatient} />
             <Route exact path="/patientsList/" component={patientsList} />
           </Switch>
         </div>

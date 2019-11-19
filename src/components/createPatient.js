@@ -3,11 +3,10 @@ import axios from 'axios';
 class CreatePatient extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {PatientIDPhoto:'',PatientName: '',DOB: '',PlaceOfBirth:''};
+    this.state = {PatientName: '',DOB: '',PlaceOfBirth:''};
 
     this.handleChangePatientName = this.handleChangePatientName.bind(this);
     this.handleChangeDOB = this.handleChangeDOB.bind(this);
-    this.handleChangePatientIDPhoto = this.handleChangePatientIDPhoto.bind(this);
     this.handleChangePlaceOfBirth = this.handleChangePlaceOfBirth.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,9 +15,6 @@ class CreatePatient extends React.Component {
   }
   handleChangeDOB(e) {
     this.setState({DOB: e.target.value});
-  }
-  handleChangePatientIDPhoto(e) {
-    this.setState({PatientIDPhoto: e.target.value});
   }
   handleChangePlaceOfBirth(e) {
     this.setState({PlaceOfBirth: e.target.value});
@@ -31,7 +27,7 @@ class CreatePatient extends React.Component {
 
       Patient:this.state.PatientName,
       DOB:this.state.DOB,
-      PatientIDPhoto:this.state.PatientIDPhoto,
+      
     PlaceOfBirth:this.state.PlaceOfBirth
     }
   
@@ -42,7 +38,6 @@ class CreatePatient extends React.Component {
 
     PatientName:'',
     DOB:'',
-    PatientIDPhoto:'',
     PlaceOfBirth:''
 
   });
@@ -51,12 +46,12 @@ class CreatePatient extends React.Component {
   render() {
     return (
         <div>
-        <h1>Create New Patient</h1>
+        <h1>Hello from Create Component!</h1>
         
       <form onSubmit={this.handleSubmit}>
           <div className="form-group">
         <label>
-         Patient Name:  
+         PatientName:  
          </label>
           <input 
           type="text" 
@@ -69,7 +64,7 @@ class CreatePatient extends React.Component {
 
           <div className="form-group">
         <label>
-        Date Of Birth:  
+        DOB: 
          </label>
           <input 
           type="text" 
@@ -77,36 +72,19 @@ class CreatePatient extends React.Component {
           value={this.state.DOB} 
           onChange={this.handleChangeDOB} />
           </div>
-       
+
           <div className="form-group">
         <label>
-        Patient Photo URL:  
+        Place of Birth 
          </label>
-          
-          <textarea 
-          rows="3"
-          className='form-control'
-          value={this.state.PatientIDPhoto}
-          onChange={this.handleChangePatientIDPhoto}
-          >
-
-     <div className="form-group">
-        <label>
-        Place of Birth:  
-        </label>
           <input 
           type="text" 
           className='form-control'
           value={this.state.PlaceOfBirth} 
           onChange={this.handleChangePlaceOfBirth} />
           </div>
-
-
-          </textarea>
-          <div>
-          <input type="submit" value="Submit" />
-          </div>
-          </div>
+       
+          
           
       </form>
       </div>
