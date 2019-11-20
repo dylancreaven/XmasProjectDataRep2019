@@ -63,7 +63,7 @@ app.put('/api/patients/:id',(req,res)=>{
             })
 
 })
-app.get('/api/patients' ,(req,res)=>{
+app.get('/api/patients/' ,(req,res)=>{
 
 
     PatientModel.find((error,data)=>{
