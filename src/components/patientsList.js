@@ -2,7 +2,7 @@ import Patients from './patients';
 import axios from 'axios';
 import React from 'react';
 import {Link} from 'react-router-dom';
-class ShowPatients extends React.Component {
+class PatientsList extends React.Component {
 
     state={
         patients:[]
@@ -30,12 +30,13 @@ class ShowPatients extends React.Component {
     return (
         <div>
         <h1>All Patients</h1>
-        <Patients myPatient={this.state.patients}></Patients>
-        <Link to={"/CreatePatient/"} className="btn btn-primary">click here to Add a Patient</Link>
+        <Link to={"/createPatient/"} className="btn btn-info">Click here to Add a Patient</Link>
+        <Patients myPatients={this.state.patients}></Patients>
+        
        
         </div>
     )
   }
 }
 
-export default ShowPatients;
+export default PatientsList;

@@ -32,11 +32,11 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
                     </Card.Text>
 
                 </Card.Body>
-                <Button variant="danger" onClick={this.DeletePatient}>Delete Patient</Button>
                 <Link to={"/edit/"+this.props.patient._id} className="btn btn-primary">Edit</Link>
-
+                <Button variant="danger" onClick={this.DeletePatient}>Delete Patient</Button>
+                
             </Card>
-            <Link to={"/createPatient/"} className="btn btn-primary">Add a Patient</Link>
+           
         </div>
     }
 
