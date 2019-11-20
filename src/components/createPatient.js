@@ -3,11 +3,12 @@ import axios from 'axios';
 class CreatePatient extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {PatientName: '',DOB: '',PlaceOfBirth:''};
+    this.state = {PatientName: '',DOB: '',PlaceOfBirth:'',patientImage:''};
 
     this.handleChangePatientName = this.handleChangePatientName.bind(this);
     this.handleChangeDOB = this.handleChangeDOB.bind(this);
     this.handleChangePlaceOfBirth = this.handleChangePlaceOfBirth.bind(this);
+    this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChangePatientName(e) {
@@ -19,26 +20,47 @@ class CreatePatient extends React.Component {
   handleChangePlaceOfBirth(e) {
     this.setState({PlaceOfBirth: e.target.value});
   }
+  getBase64(file) {
+    let document = "";
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        document = reader.result;
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+
+    return document;
+}
+  handleChangeImage(e) {
+    this.getBase64(e.target.files[0],(base64)=>{
+      this.setState({patientImage:base64});
+
+    })
+  }
 
   handleSubmit(e) {
-    console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPatient ID: "+this.state.PatientIDPhoto,+"\nPlace of Birth: "+this.state.PlaceOfBirth);
+    console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.patientImage);
   
     const newPatient={
 
-      Patient:this.state.PatientName,
+      PatientName:this.state.PatientName,
       DOB:this.state.DOB,
-      
-    PlaceOfBirth:this.state.PlaceOfBirth
+      PlaceOfBirth:this.state.PlaceOfBirth,
+      patientImage:this.state.patientImage
     }
   
     axios.post('http://localhost:4000/api/patients',newPatient)
   .then()
   .catch();
+  
   this.setState({
 
     PatientName:'',
     DOB:'',
-    PlaceOfBirth:''
+    PlaceOfBirth:'',
+    patientImage:''
 
   });
     e.preventDefault();
@@ -46,7 +68,7 @@ class CreatePatient extends React.Component {
   render() {
     return (
         <div>
-        <h1>Hello from Create Component!</h1>
+        <h1>Add a Patient:</h1>
         
       <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -82,9 +104,24 @@ class CreatePatient extends React.Component {
           className='form-control'
           value={this.state.PlaceOfBirth} 
           onChange={this.handleChangePlaceOfBirth} />
+          
+          </div>
+          <div>
+          <label>
+        Upload Image 
+         </label>
+          <input 
+          type="file" 
+          className='form-control'
+          value={this.state.patientImage} 
+          onChange={this.handleChangeImage} />
           </div>
        
+          <div>
           
+          <input type="submit" value="Submit" />
+          
+          </div>
           
       </form>
       </div>

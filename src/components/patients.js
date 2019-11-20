@@ -1,15 +1,15 @@
 import React from 'react';
-import Patient from './OnePatient';
+import Patient from './patient';
 
 class Patients extends React.Component {
 
   render() {
-    /*return this.props.myPatients.map((patient)=>{
-        console.log(patient);
-       return <Patient patient={patient}></Patient>
+    return this.props.myPatient.map((patients)=>{
+        console.log(patients);
+       return <Patient patients={patients}></Patient>
 
-    });*/
-    return null;
+    });
+   
   }
 }
 

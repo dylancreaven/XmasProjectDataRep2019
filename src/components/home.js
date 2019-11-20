@@ -1,7 +1,5 @@
 import React from 'react';
 import '../App.css';
-import axios from 'axios';
-import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
 class Home extends React.Component {
 

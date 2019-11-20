@@ -1,10 +1,10 @@
 import React from 'react';
-import Card, { CardBody } from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
  
-class OnePatient extends React.Component {
+class Patient extends React.Component {
     constructor(){
         super();
         this.DeletePatient=this.DeletePatient.bind(this);
@@ -26,6 +26,7 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
                     <Card.Header>{this.props.patient.patientName}</Card.Header>
 
                     <Card.Text>
+                     {this.props.patient.patientPlaceOfBirth}
                         {this.props.patient.patientDOB}
                         {this.props.patient.patientPlaceOfBirth}
                     </Card.Text>
@@ -40,4 +41,4 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
     }
 
 }
-export default OnePatient;
+export default Patient;

@@ -5,8 +5,11 @@ const path=require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const mongodb = 'mongodb+srv://admin:admin@dylancreavendatarep-jsauq.mongodb.net/test?retryWrites=true&w=majority';
+const mongodb = 'mongodb+srv://admin:admin@dylancreavendatarep-jsauq.mongodb.net/xmasProject2019?retryWrites=true&w=majority';
 mongoose.connect(mongodb,{useNewUrlParser:true});
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+//
 app.use(cors());
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -14,17 +17,20 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
 next();
 });
+const Schema = mongoose.Schema;
+const patientSchema = new Schema({
+    PatientName:String,
+    DOB:String,
+    PlaceOfBirth: String,
+    patientImage:String
+
+})
+
+const PatientModel = mongoose.model('patient',patientSchema);
+
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(bodyParser.json());
-
-
-
-//app.get('/', (req, res) => res.send('Hello World!'))
-
-
-
-
 
 app.get('/api/patients/:id',(req,res)=>{
 
@@ -72,15 +78,17 @@ app.get('/api/patients' ,(req,res)=>{
 app.post('/api/patients' ,(req,res)=>{
 
     PatientModel.create({
-        name:req.body.patientName,
-        dob:req.body.PatientDOB,
-        placeofbirth:req.body.PatientPlaceOFBirth
+        PatientName:req.body.PatientName,
+        DOB:req.body.DOB,
+        PlaceOfBirth:req.body.PlaceOfBirth,
+        patientImage:req.body.patientImage
     })
 
     console.log("Patient Recieved");
-    console.log(req.body.Title);
-    console.log(req.body.Year);
-    console.log(req.body.Poster);
+    console.log(req.body.PatientName);
+    console.log(req.body.DOB);
+    console.log(req.body.PlaceOfBirth);
+    console.log(req.body.patientImage);
 
 
 })
@@ -102,16 +110,11 @@ app.delete('/api/patients/:id',(req,res)=>{
 
 
 
-const Schema = mongoose.Schema;
-const patientSchema = new Schema({
-    patientName:String,
-    PatientDOB:String,
-    PatientPlaceOFBirth: String
-
-})
-
-const PatientModel = mongoose.model('movie',movieSchema);
 
 
 
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'));
+    });
+    
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
