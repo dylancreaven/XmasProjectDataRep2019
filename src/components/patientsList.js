@@ -14,7 +14,7 @@ class PatientsList extends React.Component {
         axios.get('http://localhost:4000/api/patients')
         .then((response)=>{
               this.setState({patients:response.data.patients})
-
+              
         })
         .catch((error)=>{
           console.log(error);

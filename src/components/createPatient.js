@@ -3,7 +3,7 @@ import axios from 'axios';
 class CreatePatient extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {PatientName: '',DOB: '',PlaceOfBirth:'',patientImage:''};
+    this.state = {PatientName: '',DOB: '',PlaceOfBirth:'',PatientImage:''};
 
     this.handleChangePatientName = this.handleChangePatientName.bind(this);
     this.handleChangeDOB = this.handleChangeDOB.bind(this);
@@ -20,25 +20,22 @@ class CreatePatient extends React.Component {
   handleChangePlaceOfBirth(e) {
     this.setState({PlaceOfBirth: e.target.value});
   }
-  getBase64(file) {
-    let document = "";
+  getBase64(file, cb) {
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
-        document = reader.result;
+        cb(reader.result)
     };
     reader.onerror = function (error) {
         console.log('Error: ', error);
     };
-
-    return document;
 }
-  handleChangeImage(e) {
-    this.getBase64(e.target.files[0],(base64)=>{
-      this.setState({patientImage:base64});
-
-    })
-  }
+handleChangeImage(e){
+  //alert(e.target.files[0]);
+  this.getBase64(e.target.files[0], (base64) =>{
+      this.setState({PatientImage:base64});
+  })
+}
 
   handleSubmit(e) {
     console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.patientImage);
@@ -48,10 +45,10 @@ class CreatePatient extends React.Component {
       PatientName:this.state.PatientName,
       DOB:this.state.DOB,
       PlaceOfBirth:this.state.PlaceOfBirth,
-      patientImage:this.state.patientImage
+      PatientImage:this.state.PatientImage
     }
   
-    axios.post('http://localhost:4000/api/patients',newPatient)
+    axios.post('http://localhost:4000/api/patients/',newPatient)
   .then()
   .catch();
   
@@ -103,7 +100,8 @@ class CreatePatient extends React.Component {
           type="text" 
           className='form-control'
           value={this.state.PlaceOfBirth} 
-          onChange={this.handleChangePlaceOfBirth} />
+          onChange={this.handleChangePlaceOfBirth} >
+            </input>
           
           </div>
           <div>
@@ -113,7 +111,6 @@ class CreatePatient extends React.Component {
           <input 
           type="file" 
           className='form-control'
-          value={this.state.patientImage} 
           onChange={this.handleChangeImage} />
           </div>
        
@@ -124,6 +121,7 @@ class CreatePatient extends React.Component {
           </div>
           
       </form>
+      <img src={this.state.PatientImage}></img>
       </div>
      
       

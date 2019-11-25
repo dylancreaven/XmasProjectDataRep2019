@@ -5,13 +5,28 @@ import axios from 'axios';
 class EditPatient extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {PatientName: '',DOB: '',PlaceOfBirth:'',patientImage:''};
+        this.state = {PatientName: '',DOB: '',PlaceOfBirth:'',PatientImage:''};
     
         this.handleChangePatientName = this.handleChangePatientName.bind(this);
         this.handleChangeDOB = this.handleChangeDOB.bind(this);
         this.handleChangePlaceOfBirth = this.handleChangePlaceOfBirth.bind(this);
         this.handleChangeImage = this.handleChangeImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+      }
+      componentDidMount(){
+        alert(this.props.match.params.id);
+        axios.get("http://localhost:4000/api/patients/"+this.props.match.params.id)
+        .then((response)=>{
+          this.setState({
+            _id:response.data._id,
+            PatientName:response.data.PatientName,
+            DOB:response.data.DOB,
+            PlaceOfBirth:response.data.PlaceOfBirth,
+            PatientImage:response.data.PatientImage
+    
+          })
+        })
+        .catch();
       }
       handleChangePatientName(e) {
         this.setState({PatientName: e.target.value});
@@ -22,35 +37,33 @@ class EditPatient extends React.Component {
       handleChangePlaceOfBirth(e) {
         this.setState({PlaceOfBirth: e.target.value});
       }
-      getBase64(file) {
-        let document = "";
+      getBase64(file, cb) {
         let reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function () {
-            document = reader.result;
+            cb(reader.result)
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);
         };
-    
-        return document;
     }
-      handleChangeImage(e) {
-        this.getBase64(e.target.files[0],(base64)=>{
-          this.setState({patientImage:base64});
-    
-        })
-      }
+    handleChangeImage(e){
+      //alert(e.target.files[0]);
+      this.getBase64(e.target.files[0], (base64) =>{
+          this.setState({PatientImage:base64});
+      })
+    }
     
       handleSubmit(e) {
-        console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.patientImage);
+        console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.PatientImage);
+        alert('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.PatientImage);
       
         const newPatient={
     
           PatientName:this.state.PatientName,
           DOB:this.state.DOB,
           PlaceOfBirth:this.state.PlaceOfBirth,
-          patientImage:this.state.patientImage
+          PatientImage:this.state.PatientImage
         }
       
         axios.post('http://localhost:4000/api/patients/'+this.state._id,newPatient)
@@ -62,7 +75,7 @@ class EditPatient extends React.Component {
         PatientName:'',
         DOB:'',
         PlaceOfBirth:'',
-        patientImage:''
+        PatientImage:''
     
       });
         e.preventDefault();
@@ -70,25 +83,11 @@ class EditPatient extends React.Component {
 
 
 
-  componentDidMount(){
-    alert(this.props.match.params.id);
-    axios.get("http://localhost:4000/api/patients/"+this.props.match.params.id)
-    .then((response)=>{
-      this.setState({
-        _id:response.data._id,
-        PatientName:response.data.PatientName,
-        DOB:response.data.DOB,
-        PlaceOfBirth:response.data.PlaceOfBirth,
-        patientImage:response.data.patientImage
-
-      })
-    })
-    .catch();
-  }
+ 
   render() {
     return (
         <div>
-        <h1>Add a Patient:</h1>
+        <h1>Edit a Patient:</h1>
         
       <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -133,7 +132,6 @@ class EditPatient extends React.Component {
           <input 
           type="file" 
           className='form-control'
-          value={this.state.patientImage} 
           onChange={this.handleChangeImage} />
           </div>
        
@@ -144,6 +142,7 @@ class EditPatient extends React.Component {
           </div>
           
       </form>
+      <img src={this.state.PatientImage}></img>
       </div>
      
       

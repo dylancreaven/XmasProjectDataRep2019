@@ -22,7 +22,7 @@ const patientSchema = new Schema({
     PatientName:String,
     DOB:String,
     PlaceOfBirth: String,
-    patientImage:String
+    PatientImage:String
 
 })
 
@@ -51,14 +51,10 @@ app.put('/api/patients/:id',(req,res)=>{
         console.log("Edit: "+req.params.id);
         console.log(req.body);
         
-        PatientModel.findByIdAndUpdate(req.params.id,req.body,{new:true},
+        PatientModel.findByIdAndUpdate(req.params.id,
+            req.body,
+            {new:true},
             (error,data)=>{
-                
-                if(error)
-                {
-                    res.json(error)
-
-                }
                 res.json(data);
             })
 
@@ -67,7 +63,7 @@ app.get('/api/patients/' ,(req,res)=>{
 
 
     PatientModel.find((error,data)=>{
-
+       // console.log(data);
         res.json({patients:data});
     })
    
@@ -81,14 +77,14 @@ app.post('/api/patients' ,(req,res)=>{
         PatientName:req.body.PatientName,
         DOB:req.body.DOB,
         PlaceOfBirth:req.body.PlaceOfBirth,
-        patientImage:req.body.patientImage
+        PatientImage:req.body.PatientImage
     })
 
     console.log("Patient Recieved");
     console.log(req.body.PatientName);
     console.log(req.body.DOB);
     console.log(req.body.PlaceOfBirth);
-    console.log(req.body.patientImage);
+    console.log(req.body.PatientImage);
 
 
 })

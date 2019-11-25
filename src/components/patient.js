@@ -13,7 +13,7 @@ class Patient extends React.Component {
 DeletePatient(e){
 console.log("Delete Button clicked!");
     
-axios.delete('http://localhost:4000/api/patients/'+this.props.patients._id)
+axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
 .then()
 .catch();
 
@@ -23,16 +23,21 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patients._id)
             <Card>
                 <Card.Body>
 
-                    <Card.Header>{this.props.patients.patientName}</Card.Header>
-
+                    <Card.Header>
+                     {this.props.patient.PatientName}
+                    </Card.Header>
+                    <Card.Body>
+                     <img height="350px" width="300px"src={this.props.patient.PatientImage}></img>
+                    </Card.Body>
                     <Card.Text>
-                     {this.props.patients.patientPlaceOfBirth}
-                        {this.props.patients.patientDOB}
-                        {this.props.patients.patientPlaceOfBirth}
+                        Place of Birth: {this.props.patient.PlaceOfBirth}
+                    </Card.Text>
+                    <Card.Text>
+                       Date Of Birth: {this.props.patient.DOB}
                     </Card.Text>
 
                 </Card.Body>
-                <Link to={"/edit/"+this.props.patients._id} className="btn btn-primary">Edit</Link>
+                <Link to={"/edit/"+this.props.patient._id} className="btn btn-primary">Edit</Link>
                 <Button variant="danger" onClick={this.DeletePatient}>Delete Patient</Button>
                 
             </Card>
