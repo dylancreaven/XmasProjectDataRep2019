@@ -66,7 +66,7 @@ class EditPatient extends React.Component {
           PatientImage:this.state.PatientImage
         }
       
-        axios.post('http://localhost:4000/api/patients/'+this.state._id,newPatient)
+        axios.put('http://localhost:4000/api/patients/'+this.state._id,newPatient)
       .then()
       .catch();
       
@@ -142,7 +142,7 @@ class EditPatient extends React.Component {
           </div>
           
       </form>
-      <img src={this.state.PatientImage}></img>
+      
       </div>
      
       

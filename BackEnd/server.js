@@ -46,6 +46,19 @@ app.get('/api/patients/:id',(req,res)=>{
 
 })
 
+//search
+app.get('/search/patients/:name',(req,res)=>{
+    console.log("Search: "+req.params.name);
+    PatientModel.find({PatientName:req.params.name},(error,data)=>{
+        res.json(data);
+
+    })
+})
+
+
+
+
+
 ///EDIT FUNCTION
 app.put('/api/patients/:id',(req,res)=>{
         console.log("Edit: "+req.params.id);

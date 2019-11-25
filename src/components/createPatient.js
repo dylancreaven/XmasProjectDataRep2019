@@ -121,7 +121,7 @@ handleChangeImage(e){
           </div>
           
       </form>
-      <img src={this.state.PatientImage}></img>
+      
       </div>
      
       
