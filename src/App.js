@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { Switch, Route, BrowserRouter } from 'react-router-dom'
+import { Switch, Route, BrowserRouter} from 'react-router-dom'
 import Home from './components/home';
 import PatientsList from "./components/patientsList";
 import CreatePatient from './components/createPatient';
@@ -22,6 +22,7 @@ class App extends React.Component {
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/patientsList/">Patients</Nav.Link>
+          
         </Nav>
       </Navbar>
        <Switch>
@@ -29,7 +30,8 @@ class App extends React.Component {
             <Route exact path="/createPatient/" component={CreatePatient} />
             <Route exact path="/edit/:id" component={EditPatient} />
             <Route exact path="/patientsList/" component={PatientsList} />
-          </Switch>
+       </Switch>
+      
         </div>
       </BrowserRouter>
     );

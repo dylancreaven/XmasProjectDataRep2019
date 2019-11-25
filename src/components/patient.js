@@ -18,6 +18,7 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
 .catch();
 
 }
+
     render() {
         return <div>
             <Card>
