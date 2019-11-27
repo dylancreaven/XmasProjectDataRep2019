@@ -11,6 +11,7 @@ class CreatePatient extends React.Component {
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
   handleChangePatientName(e) {
     this.setState({PatientName: e.target.value});
   }
@@ -64,7 +65,9 @@ handleChangeImage(e){
   }
   render() {
     return (
+      
         <div>
+          
         <h1>Add a Patient:</h1>
         
       <form onSubmit={this.handleSubmit}>

@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import '../App.css';
 
 class Patient extends React.Component {
 
@@ -44,10 +45,11 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
 
                 </Card.Body>
                 <div>
-                <Link to={"/edit/"+this.props.patient._id} className="btn btn-primary button" >Edit</Link>
+               
+                <Link to={"/edit/"+this.props.patient._id}  className="btn btn-warning" >Edit</Link>
                 &nbsp;&nbsp;&nbsp;
                 
-                <Button variant="danger" className="button" onClick={this.DeletePatient}>Delete Patient</Button>
+                <Button variant="danger" className="button" onClick={this.DeletePatient}>Delete</Button>
                 </div>
             </Card>
            

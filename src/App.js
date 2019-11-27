@@ -8,7 +8,8 @@ import Home from './components/home';
 import PatientsList from "./components/patientsList";
 import CreatePatient from './components/createPatient';
 import EditPatient from './components/editPatient';
-import Logo from './Photos/UHGLogo.PNG';
+import Logo from './Photos/UHG.png';
+import Image from 'react-bootstrap/Image';
 
 
 class App extends React.Component {
@@ -18,8 +19,8 @@ class App extends React.Component {
       <div className="background">
       <BrowserRouter>
         <div>
-        <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/"><img src={Logo} alt="UHG Logo" height="50px" width="50px"/></Navbar.Brand>
+        <Navbar bg="light" variant="light">
+        <Navbar.Brand href="/"><Image src={Logo} alt="UHG Logo" height="50px" width="50px"/></Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/patientsList/">Patients</Nav.Link>

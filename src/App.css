@@ -11,13 +11,14 @@
 .background{
   background-color: #282c34;
   color: aliceblue;
-  height:800px;
+  height:1000px;
   text-align: center;
 }
 
 .button{
-  width: 150px !important;
-  height:50px;
+  width: 75px !important;
+  height:40px;
+  text-align: justify;
 }
 
 .App-header {
