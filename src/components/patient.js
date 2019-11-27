@@ -3,8 +3,11 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
- 
+
 class Patient extends React.Component {
+
+
+
     constructor(){
         super();
         this.DeletePatient=this.DeletePatient.bind(this);
@@ -14,14 +17,16 @@ DeletePatient(e){
 console.log("Delete Button clicked!");
     
 axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
-.then()
-.catch();
+.then(()=>{
+    this.props.ReloadDataMethod();
+  })
+  .catch();
 
 }
 
     render() {
         return <div>
-            <Card>
+            <Card bg="dark">
                 <Card.Body>
 
                     <Card.Header>
@@ -38,9 +43,12 @@ axios.delete('http://localhost:4000/api/patients/'+this.props.patient._id)
                     </Card.Text>
 
                 </Card.Body>
-                <Link to={"/edit/"+this.props.patient._id} className="btn btn-primary">Edit</Link>
-                <Button variant="danger" onClick={this.DeletePatient}>Delete Patient</Button>
+                <div>
+                <Link to={"/edit/"+this.props.patient._id} className="btn btn-primary button" >Edit</Link>
+                &nbsp;&nbsp;&nbsp;
                 
+                <Button variant="danger" className="button" onClick={this.DeletePatient}>Delete Patient</Button>
+                </div>
             </Card>
            
         </div>

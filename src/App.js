@@ -8,17 +8,18 @@ import Home from './components/home';
 import PatientsList from "./components/patientsList";
 import CreatePatient from './components/createPatient';
 import EditPatient from './components/editPatient';
-
+import Logo from './Photos/UHGLogo.PNG';
 
 
 class App extends React.Component {
 
   render() {
     return (
+      <div className="background">
       <BrowserRouter>
-        <div className="App">
+        <div>
         <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar.Brand href="/"><img src={Logo} alt="UHG Logo" height="50px" width="50px"/></Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/patientsList/">Patients</Nav.Link>
@@ -34,6 +35,7 @@ class App extends React.Component {
       
         </div>
       </BrowserRouter>
+      </div>
     );
   }
 }

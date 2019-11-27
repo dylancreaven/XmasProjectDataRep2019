@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import '../App.css';
 
 
 class EditPatient extends React.Component {
@@ -14,7 +15,7 @@ class EditPatient extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
       componentDidMount(){
-        alert(this.props.match.params.id);
+        
         axios.get("http://localhost:4000/api/patients/"+this.props.match.params.id)
         .then((response)=>{
           this.setState({
@@ -55,8 +56,8 @@ class EditPatient extends React.Component {
     }
     
       handleSubmit(e) {
-        console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.PatientImage);
-        alert('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.PatientImage);
+       // console.log('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.PatientImage);
+        //alert('Patient Name: ' + this.state.PatientName+"\nDate Of Birth "+this.state.DOB+"\nPlace of Birth: "+this.state.PlaceOfBirth+"\nPatient ID: "+this.state.PatientImage);
       
         const newPatient={
     
@@ -86,7 +87,7 @@ class EditPatient extends React.Component {
  
   render() {
     return (
-        <div>
+        <div className="App">
         <h1>Edit a Patient:</h1>
         
       <form onSubmit={this.handleSubmit}>

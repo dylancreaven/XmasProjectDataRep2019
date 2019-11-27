@@ -1,13 +1,23 @@
 .App {
   text-align: center;
+  margin: unset;
   /*background: url("Photos/uhg.jpg");
   background-size:contain;
   background-position:top;
   background: cover;*/
+  
 }
 
-.App-logo {
-  height: 40vmin;
+.background{
+  background-color: #282c34;
+  color: aliceblue;
+  height:800px;
+  text-align: center;
+}
+
+.button{
+  width: 150px !important;
+  height:50px;
 }
 
 .App-header {
@@ -18,7 +28,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: darkred;
 }
 
 .App-link {

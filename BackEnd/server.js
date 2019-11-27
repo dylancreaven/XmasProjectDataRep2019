@@ -46,17 +46,6 @@ app.get('/api/patients/:id',(req,res)=>{
 
 })
 
-//search
-app.get('/search/patients/:name',(req,res)=>{
-    console.log("Search: "+req.params.name);
-    PatientModel.find({PatientName:req.params.name},(error,data)=>{
-        res.json(data);
-
-    })
-})
-
-
-
 
 
 ///EDIT FUNCTION
@@ -93,11 +82,11 @@ app.post('/api/patients' ,(req,res)=>{
         PatientImage:req.body.PatientImage
     })
 
-    console.log("Patient Recieved");
+    /*console.log("Patient Recieved");
     console.log(req.body.PatientName);
     console.log(req.body.DOB);
     console.log(req.body.PlaceOfBirth);
-    console.log(req.body.PatientImage);
+    console.log(req.body.PatientImage);*/
 
 
 })
@@ -110,9 +99,9 @@ app.delete('/api/patients/:id',(req,res)=>{
     PatientModel.deleteOne({_id:req.params.id},(error,data)=>{
         if(error)
         {
-            req.json(error); 
+            res.json(error); 
         }
-        req.json(data);
+        res.json(data);
     })
 
 })
