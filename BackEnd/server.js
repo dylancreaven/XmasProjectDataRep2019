@@ -28,6 +28,7 @@ const patientSchema = new Schema({
 
 const PatientModel = mongoose.model('patient',patientSchema);
 
+
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(bodyParser.json());

@@ -8,6 +8,7 @@ import Home from './components/home';
 import PatientsList from "./components/patientsList";
 import CreatePatient from './components/createPatient';
 import EditPatient from './components/editPatient';
+import Login from './components/login';
 import Logo from './Photos/UHG.png';
 import Image from 'react-bootstrap/Image';
 
@@ -32,6 +33,7 @@ class App extends React.Component {
             <Route exact path="/createPatient/" component={CreatePatient} />
             <Route exact path="/edit/:id" component={EditPatient} />
             <Route exact path="/patientsList/" component={PatientsList} />
+            <Route exact path="/login/" component={Login} />
        </Switch>
       
         </div>
