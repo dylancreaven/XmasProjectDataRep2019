@@ -23,7 +23,7 @@ class App extends React.Component {
         <Navbar bg="light" variant="light">
         <Navbar.Brand href="/"><Image src={Logo} alt="UHG Logo" height="50px" width="50px"/></Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
+          
           <Nav.Link href="/patientsList/">Patients</Nav.Link>
           
         </Nav>

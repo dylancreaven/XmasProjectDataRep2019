@@ -12,7 +12,7 @@ class Home extends React.Component {
       <div className="App">
        <br/><br/><br/><br/><br/><br/>
         <Image src={Logo} alt="UHG Logo" height="200px" width="200px"/>
-        <h2 className="header">Welcome the University Hospital Galway Patient Database</h2>
+        <h2 className="header">Welcome to the University Hospital Galway Patient Database</h2>
         <Link to={"/login/"} className="btn btn-primary">Click here to Login</Link>
       </div>
     );
